@@ -1,8 +1,8 @@
 var data;
 var baseUrl = 'https://api.spotify.com/v1/search?type=track&query='
-var myApp = angular.module('myApp', ['spotify']);
+var myApp = angular.module('myApp', [])
 
-var myCtrl = myApp.controller('myCtrl', function($scope, $http, Spotify) {
+var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
   $scope.audioObject = {}
   $scope.getSongs = function() {
     $http.get(baseUrl + $scope.track).success(function(response){
@@ -34,13 +34,3 @@ $(document).ready(function() {
     $('.form-group').fadeIn(2000);
 });
 
-var data;
-$.ajax({
-  url: 
-  type: "get";
-  success: function(data) {
-    dat = data;
-    Spotify.getAlbum
-  },
-  dataType:"json";
-})
