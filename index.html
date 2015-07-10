@@ -1,35 +1,131 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://code.jquery.com/jquery.min.js"></script>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link rel="shortcut icon" href="spotify-icon.ico">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.2/angular.min.js"></script>
-    <script src="angular-spotify.js"></script>
-    <script src="app.js"></script>
-    <script src="data.js"></script>
-    <link href="app.css" rel="stylesheet" type="text/css"/>
-    <title>Spotify search</title>
+
+    <title>Spotify Music Explorer</title>
+
+        <!-- JQuery 2.1.4 -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <!-- Angular 1.4.2 -->
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+
+    <!-- Bootstrap 3.3.5 CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+    <!-- Bootstrap 3.3.5 JS -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+    <!-- FontAwesome 4.3.0 -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="css/app.css">
+
+    <link rel="shortcut icon" href="img/spotify-icon.ico">
+
+    <!-- Angular Spotify JS : https://github.com/eddiemoore/angular-spotify-->
+    <script src="js/angular-spotify.js"></script>
+
+    <!-- My JS -->
+    <script src="js/data.js"></script>
+
+    <script src="js/app.js"></script>
+
+  
   </head>
-  <header>
-  <h1 style = "color: white">Music Explorer</h1>
+  <header style="padding: 1em 1em 1em 1em; border-top: 5px #EC791F; font-size: 80%; text-align: left;">
   </header>
-  <body style="background-image: url('img/music-title.jpg');
+  <body style="background-image: url('img/background.jpg');
+  background-attachment: fixed;
   background-repeat: no-repeat;
-  background-position: left top;">
-    <div class="container-fluid" ng-app="myApp" ng-controller="myCtrl">
+  background-position: center;">
+  <!-- <main class="container-fluid" ng-app="spotifyApp" ng-controller="primary"> -->
+   <!--  <div class="text-center"> --> 
+      <h1 style = "color: beige; font-size: 40px; font-family: 'Raleway';">Spotify Music Explorer</h1>
+      <!-- <h5>Explore your favorite artists and learn more about them.<h5>
+  </div>
+  <form class="form text-center" role-="form" name="formSearchArtist" novalidate="true">
+    <div class="row">
+      <div class="col-xs-6 form-group center-block">
+          <input type="text" class="form-control" placeholder="Search for your favorite Artist..." name="searchArtist" ng-model="inputArtist" ng-change="searchArtist()" required>
+      </div>
+    </div>
+  </form>
+  <div class="row">
+      <div class = "col-xs-6">
+          <table class="table.responsive table-striped table-bordered">
+              <tr ng-repeat="element in rawArtistList" ng-click="artistSelected(element.id)" ng-class="{ 'selectedRow' : element.id == returnArtistId }" ng-show="!formSearchArtist.searchArtist.$error.required">
+                <td>
+                  {{element.name}}
+                </td>
+              </tr>
+            </table>
+          </div>
+        <div class="col-xs-6" >
+            <div id="infoText" class="text-center" ng-show="!formSearchArtist.searchArtist.$error.required && !showDescription"><i class="fa fa-info-circle"></i> Click on an artist to find out more information about them!</div>
+        <table class="table-responsive table-striped table-bordered" ng-show="!formSearchArtist.searchArtist.$error.required && showDescription">
+            <tr>
+                <th>
+                    Name:
+                <th>
+                <td>
+                  {{returnName}}
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Spotify URL
+                </th>
+                <td>
+                    <a ng-href="{{returnUrl}}" target="_blank">View on Spotify</a>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    Popularity
+                </th>
+                <td>
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar" ng-style="{ 'width': returnPop + '%' }">
+                            {{returnPop}}
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th>
+                  Genres
+                </th>
+                <td>
+                    <div class="noPadMar" ng-repeat="element in returnGenres">{{element}}</div>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  Top Songs in the US
+                </th>
+                <td>
+                    <div class="noPadMar" ng-repeat="element in returnTopSongs">{{element.name}}</div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </main>
+ -->
+    <div style="background-color: gray;" class="container-fluid" ng-app="myApp" ng-controller="myCtrl">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
           <form name="songForm">
-            <div class="form-group">
+            <div style="color: yellow; font-size: 20px; font-family: 'Raleway';" class="form-group">
               <label>Explore your favorite music, your way:</label>
               <input name="search" ng-minlength=3 placeholder="Search for an album, song title, or artist..." ng-model="track" class="form-control" required></input>
               <p class="help-block" ng-show="songForm.search.$error.minlength">Enter 3+ characters</p>
             </div>
-            <div class="form-group">
+            <div style="button:hover background: #3071A9;" class="form-group">
               <button ng-disabled="songForm.search.$invalid" class="btn btn-primary" ng-click="getSongs()" type="submit">Submit</button>
             </div>
           </form>
@@ -37,13 +133,8 @@
         <div class="col-md-6">
           <div class="container-fluid">
             <div class="row">
-              <p ng-show="tracks.length>0" class="help-block">Click to sample</p>
+              <p style="color: white;" ng-show="tracks.length>0" class="help-block">Click to sample</p>
               <div ng-class="track.preview_url == currentSong ? 'playing' : ''"  ng-repeat="track in tracks" class="col-sm-4 img"><img ng-click="play(track.preview_url)" title="{{track.name}}" src="{{track.album.images[1].url}}"></img></div>
-              <ul>
-            <li ng-repeat="song in songs">
-            {{ song.title + ', ' + song.artist }}
-            </li>
-              </ul> 
             </div>
           </div>
         </div>
