@@ -10,7 +10,7 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http, Spotify) {
 
     $scope.searchArtist = function () {
         Spotify.search($scope.searchartist, 'artist').then(function (data) {
-            $scope.artists = data.artists.items;
+        $scope.artists = data.artists.items;
         });
     };
     
