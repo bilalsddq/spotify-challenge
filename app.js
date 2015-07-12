@@ -24,7 +24,7 @@ var myCtrl = myApp.controller('myCtrl', function($scope, $http, Spotify) {
                 $scope.genres = ["Unlisted"];
             }
             console.log($scope.genres);
-            $scope.followers = data.followersTotal;
+            $scope.followers = data.followers.total;
             
         });
     }
