@@ -1,36 +1,32 @@
-var data;
-var baseUrl = 'https://api.spotify.com/v1/search?type=track&query='
-var myApp = angular.module('myApp', [])
+var myApp = angular.module('myApp', ['spotify']);
 
-var myCtrl = myApp.controller('myCtrl', function($scope, $http) {
-  $scope.audioObject = {}
-  $scope.getSongs = function() {
-    $http.get(baseUrl + $scope.track).success(function(response){
-      data = $scope.tracks = response.tracks.items
-      
-    })
-  }
-  $scope.play = function(song) {
-    if($scope.currentSong == song) {
-      $scope.audioObject.pause()
-      $scope.currentSong = false
-      return
+var myCtrl = myApp.controller('myCtrl', function($scope, $http, Spotify) {
+    $scope.artists={};
+    
+    $scope.name;
+    $scope.popularity;
+    $scope.genres;
+    $scope.followers;
+
+    $scope.searchArtist = function () {
+        Spotify.search($scope.searchartist, 'artist').then(function (data) {
+            $scope.artists = data.artists.items;
+        });
+    };
+    
+    $scope.artistSelected = function(artistId) {
+            Spotify.getArtist(artistId).then(function (data) {
+            $scope.name = data.name;
+            $scope.popularity = data.popularity;
+            if (typeof data.genres !== 'undefined' && data.genres.length > 0) {
+                $scope.genres = data.genres;
+            } else {
+                $scope.genres = ["Unlisted"];
+            }
+            console.log($scope.genres);
+            $scope.followers = data.followersTotal;
+            
+        });
     }
-    else {
-      if($scope.audioObject.pause != undefined) $scope.audioObject.pause()
-      $scope.audioObject = new Audio(song);
-      $scope.audioObject.play()  
-      $scope.currentSong = song
-    }
-  }
-})
-
-// Add tool tips to anything with a title property
-$('body').tooltip({
-    selector: '[title]'
-});
-
-$(document).ready(function() {
-    $('.form-group').fadeIn(2000);
 });
 

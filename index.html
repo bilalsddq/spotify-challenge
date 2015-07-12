@@ -30,8 +30,6 @@
     <script src="angular-spotify.js"></script>
 
     <!-- My JS -->
-    <script src="data.js"></script>
-
     <script src="app.js"></script>
 
   
@@ -47,37 +45,28 @@
 
    <!--  <div class="text-center"> --> 
       <h1 style = "color: beige; font-size: 40px; font-family: 'Raleway';">Spotify Music Explorer</h1>
-      <h5>Explore your favorite artists and learn more about them.<h5>
       </div>
       <form name="songForm"></form>
         <div style="color: yellow; font-size: 20px; font-family: 'Raleway';" 
         class="form-group">
-            <label>Explore your favorite music, your way:</label>
+            <label>Explore your favorite music artists, your way:</label>
         </div>
     <div class="row">
         <div class="col-xs-6 form-group center-block">
-     <input name="search" ng-minlength=3 placeholder="Search for an album, song title, or artist..." ng-model="track" class="form-control" required></input>
+     <input name="search" ng-minlength=3 placeholder="Search for an album, song title, or artist..." ng-model="searchartist" class="form-control" required></input>
               <p class="help-block" ng-show="songForm.search.$error.minlength">Enter 3+ characters</p>
             </div>
             <div style="button:hover background: #3071A9;" class="form-group">
-              <button ng-disabled="songForm.search.$invalid" class="btn btn-primary" ng-click="getSongs()" type="submit">Submit</button>
+              <button ng-disabled="songForm.search.$invalid" class="btn btn-primary" ng-click="searchArtist()" type="submit">Submit</button>
             </div>
             <div class="col-xs-6"></div>
        <table style="width:100%">
-    <tr><td>Name:</td><td>Elvis</td></tr>
-    <tr><td>Popularity:</td><td>High</td></tr>
-    <tr><td>Genres:</td><td>Pop</td></tr>
-    <tr><td>Top Songs:</td><td>Song1</td></tr>
-    <tr><td>Related Artists:</td><td>Artist1</td></tr>
-</table>
-            <ul>
-            <li>Name:</li>
-            <li>Popularity:</li>
-            <li>Genres:</li>
-            <li>Top Songs:</li>
-            <li>Related Artists:</li>
-            </ul>
-            
+         <tr><td>Name:</td><td>{{name}}</td></tr>
+         <tr><td>Popularity:</td><td>{{popularity}}/100</td></tr>
+         <tr><td>Genres:</td><td><p ng-repeat="element in genres">{{element}}</p></td></tr>
+         <tr><td>Numbern of followers:</td><td>{{followersTotal}}</td></tr>
+        </table>
+    <p name="searchResults" ng-repeat="element in artists" ng-click ="artistSelected(element.id)">{{element.name}}</p>
     </main>
   </body>
 </html>
