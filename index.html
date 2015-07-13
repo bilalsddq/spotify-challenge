@@ -44,7 +44,7 @@
       <form name="songForm"></form>
         <div style="color: yellow; font-size: 20px; font-family: 'Raleway';" 
         class="form-group">
-            <label>Learn more about your favorite music artists:</label>
+            <label style="font-size: 115%;">Learn more about your favorite music artists:</label>
         </div>
     <div class="row">
         <div class="text" style="width: 450px;" class="col-xs-6 form-group center-block">
@@ -56,7 +56,7 @@
               <button ng-disabled="songForm.search.$invalid" class="btn btn-primary" ng-click="searchArtist()" type="submit">Submit</button>
             </div>
             <div class="col-xs-6"></div>
-        <h3 style="margin-left: 10px; color: purple">What Information will be provided?</h3>
+        <h2 style="margin-left: 10px; color: purple">What Information will be provided?</h2>
        <table style="background-color: lightgray; margin-left: 10px" class="table-responsive table-striped table-bordered">
          <tr><td>Name:</td><td>{{name}}</td></tr>
          <tr><td>Popularity:</td><td>{{popularity}}/100</td></tr>
@@ -64,7 +64,7 @@
          <tr><td>Number of followers:</td><td>{{followers}}</td></tr>
         </table>
             <table class="table-responsive table-striped table-bordered" style=" color: $A6F5A6; margin-top: 10px; margin-left: 5px;">
-          <h5 style="margin-left: 10px; color: white;"><i class="fa fa-info-circle"></i> Click on an artist to learn more about them!:</h5><tr><td ng-click="artistSelected(element.id)" ng-class="{ 'selectedRow' : element.id == artistId }"><h4 style="font-family: 'Raleway'; margin-left: 10px; margin-bottom: 5px;" name="searchResults" ng-repeat="element in artists" ng-click ="artistSelected(element.id)">{{element.name}}</h4></tr></td>
+          <h3 style="margin-left: 10px; color: white;"><i class="fa fa-info-circle"></i> Click on an artist to learn more about them!:</h3><tr><td ng-click="artistSelected(element.id)" ng-class="{ 'selectedRow' : element.id == artistId }"><h3 style="font-family: 'Raleway'; margin-left: 10px; margin-bottom: 5px;" name="searchResults" ng-repeat="element in artists" ng-click ="artistSelected(element.id)">{{element.name}}</h3></tr></td>
         <div class="container-fixed">
        </div>
         </form>
